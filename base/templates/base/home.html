@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+.home-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+</style>
+
+<div class="home-container">
+    <div>
+        <h3>My Checklists</h3>
+        <p><small>Record of vehicle reports for {{ request.user.username }}</small></p>
+        {% for checkList in checkLists %}
+            {% if checkList.driver.id == request.user.id %}
+            <table  class="table table-sm table-borderless">
+                <tr>
+                    <td><a href="{% url 'update-checklist' checkList.id %}">{{ checkList.created }}</a></td>
+                </tr>
+            </table>
+            {% endif %}  
+        {% endfor %} 
+    </div>
+    
+    <div>
+        {% if request.user.role == "SP" %}
+            <p>
+                <h3>Alerts <small>({{alert_count}})</small></h3>
+                <p>
+                    <small>Vehicles that need attention.</small>
+                </p>
+            </p>
+            {% for alert in alerts %}
+            <table  class="table table-responsive-sm table-borderless">
+                <tr>
+                    <td><a href="{% url 'view-checklist' alert.id %}">{{ alert.created }}</a></td>
+                </tr>
+            </table>
+
+            {% endfor %}
+            <p>
+                <small>*Visible by Supervisors only</small>
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content%}

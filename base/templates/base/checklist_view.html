@@ -1,0 +1,44 @@
+{%extends 'main.html'%}
+
+{% block content %}   
+
+<h2>{{checklist.created}}</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-responsive-sm  table-borderless">
+        <tr class="table-success">
+            <th>
+                Driver:
+            </th>
+            <td>
+                {{ checklist.driver.username }}
+            </td>
+        </tr>
+
+        <tr class="table-success">
+            <th>
+                Vehicle:
+            </th>
+            <td>
+                {{ checklist.vehicle.name }}
+            </td>
+        </tr>
+
+        {% for field in form %}
+            {% if field.value == 0  %}
+            <tr class="table-danger">
+            {% else %}
+            <tr class="table-success">
+            {% endif %}
+                <th>{{field.label_tag}}</th>
+                <td>
+                {{ field.errors }}
+                {{ field }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr/>
+<br><br>
+
+{% endblock content %}

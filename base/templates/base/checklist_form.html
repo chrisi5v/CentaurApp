@@ -1,0 +1,42 @@
+{%extends 'main.html'%}
+
+{% block content %}   
+
+<h2>Vehicle Maintenance Checklist Form</h2>
+<small>{{ form.fields.created }}</small>
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-reponsive-sm  table-borderless">
+        <tr>
+            <th>
+                Driver:
+            </th>
+            <td>
+                {{ request.user.username }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                Vehicle:
+            </th>
+            <td>
+                {{ request.user.vehicle }}
+            </td>
+        </tr>
+
+        {% for field in form %}
+        <tr>
+            <th>{{field.label_tag}}</th>
+            <td>
+            {{ field.errors }}
+            {{ field }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <hr/>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
+</form>
+<br><br>
+{% endblock content %}
