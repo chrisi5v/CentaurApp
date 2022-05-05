@@ -9,10 +9,13 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted must be run to  activate virtu
 
 
 Powershell instructions:
-
+```
 $ cd *repo directory*
+
+```
 ```
 $ env/Scripts/activate
+```
 ```
 $ python manage.py runserver
 ```
