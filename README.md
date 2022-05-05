@@ -10,14 +10,14 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted must be run to  activate virtu
 
 Powershell instructions:
 
--cd *repo directory*
--env/Scripts/activate
--python manage.py runserver
+$ cd *repo directory*
+$ env/Scripts/activate
+$ python manage.py runserver
 
 Database is currently populated with the following users:
--User: cvill Password: sanctuary
--User: supervisor1 Password: sanctuary
--User: driver1 Password: sanctuary
+* User: cvill Password: sanctuary
+* User: supervisor1 Password: sanctuary
+* User: driver1 Password: sanctuary
 
--and some test  data.
+and some test  data.
 =user cvill is registered as a superuserfor access to the admin panel at /admin/
